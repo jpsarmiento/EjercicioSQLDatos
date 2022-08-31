@@ -1,9 +1,9 @@
+DROP TABLE Movimiento;
 DROP TABLE Fecha;
 DROP TABLE TipoTransaccion;
 DROP TABLE Cliente;
 DROP TABLE Producto;
 DROP TABLE Proveedor;
-DROP TABLE Movimiento;
 
 CREATE TABLE Fecha (
 Fecha DATETIME, 
@@ -57,11 +57,17 @@ PRIMARY KEY(ID_proveedor));
 CREATE TABLE Movimiento (
 FechaMovimiento datetime,
 ID_Producto smallint,
-ID_Proveedor smallint,
+ID_Proveedor INT,
 ID_Cliente smallint,
-ID_TipoTransaccion smallint,
+ID_TipoTransaccion tinyint,
 Cantidad double,
-primary key (FechaMovimiento, ID_Producto, ID_Proveedor, ID_Cliente, ID_TipoTransaccion));
+primary key (FechaMovimiento, ID_Producto, ID_Proveedor, ID_Cliente, ID_TipoTransaccion),
+FOREIGN KEY (ID_Cliente) REFERENCES Cliente(ID_Cliente),
+FOREIGN KEY (ID_Producto) REFERENCES Producto(ID_Producto),
+FOREIGN KEY (ID_Proveedor) REFERENCES Proveedor(ID_proveedor),
+FOREIGN KEY (FechaMovimiento) REFERENCES Fecha(Fecha),
+FOREIGN KEY (ID_TipoTransaccion) REFERENCES TipoTransaccion(ID_Tipo_transaccion)
+);
 
 INSERT INTO Fecha 
 	(Fecha, Dia, Mes, Anio, Numero_semana_ISO)
