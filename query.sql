@@ -1,7 +1,7 @@
 DROP TABLE Movimiento;
+DROP TABLE Cliente;
 DROP TABLE Fecha;
 DROP TABLE TipoTransaccion;
-DROP TABLE Cliente;
 DROP TABLE Producto;
 DROP TABLE Proveedor;
 
@@ -28,7 +28,8 @@ ID_CiudadEntrega smallint,
 LimiteCredito decimal(10,0),
 FechaAperturaCuenta datetime,
 DiasPago int,
-PRIMARY KEY(ID_Cliente));
+PRIMARY KEY(ID_Cliente),
+FOREIGN KEY (FechaAperturaCuenta) REFERENCES Fecha(Fecha));
 
 CREATE TABLE Producto (
 ID_Producto SMALLINT, 
@@ -95,11 +96,11 @@ INSERT INTO TipoTransaccion
 INSERT INTO Cliente
 	(ID_Cliente, ID_Categoria, ID_GrupoCompra, Nombre, ClienteFactura, ID_CiudadEntrega, LimiteCredito, FechaAperturaCuenta, DiasPago)
     values
-    (1, 1, 1, 'Juan A', 123, 2, 10000, '2020-02-03 10:33:56', 5),
-    (2, 2, 1, 'Pedro G', 654, 2, 5000, '2021-02-09 10:33:56', 9),
-    (3, 1, 1, 'Maria F', 346, 3, 80000, '2019-07-25 10:33:56', 2),
-    (4, 2, 1, 'Silvia C', 987, 1, 13000, '2018-05-30 10:33:56', 1),
-    (5, 2, 1, 'Sofia D', 444, 5, 55000, '2019-07-22 10:33:56', 7);
+    (1, 1, 1, 'Juan A', 123, 2, 10000, '2020-01-01 10:33:56', 5),
+    (2, 2, 1, 'Pedro G', 654, 2, 5000, '2021-02-16 12:45:56', 9),
+    (3, 1, 1, 'Maria F', 346, 3, 80000, '2020-01-01 10:33:56', 2),
+    (4, 2, 1, 'Silvia C', 987, 1, 13000, '2020-01-01 10:33:56', 1),
+    (5, 2, 1, 'Sofia D', 444, 5, 55000, '2002-02-16 12:45:56', 7);
 
 INSERT INTO Producto
 	(ID_Producto, Nombre, Marca, Paquete_de_compra, Color,Necesita_refrigeracion, Dias_tiempo_entrega, 
